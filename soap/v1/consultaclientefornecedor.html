@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+    <title>SOAP Javascript Test</title>
+</head>
+<body>
+    <script type="text/javascript">
+        function soap() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open('POST', 'http://rmportal.sebraepb.com.br/businessconnect/wsIntegracaoGenerica.asmx', true);
+			xmlhttp.setRequestHeader('Content-Type', 'text/xml; charset=utf-8');
+			xmlhttp.setRequestHeader('SOAPAction', 'http://tempuri.org/ConsultaClienteFornecedor');
+			var strRequest = "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:tem='http://tempuri.org/'>"+
+				"   <soapenv:Header><wsse:Security soapenv:mustUnderstand='1' xmlns:wsse='http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd' xmlns:wsu='http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd'><wsse:UsernameToken wsu:Id='UsernameToken-C117B3932D3C29EB2115367586015063'><wsse:Username>Webservice.sgtec</wsse:Username><wsse:Password Type='http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText'>NTBGWG1pMDA=</wsse:Password><wsse:Nonce EncodingType='http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary'>uugbsvUuHd8LhL19vVVjPQ==</wsse:Nonce><wsu:Created>2018-09-12T13:23:21.506Z</wsu:Created></wsse:UsernameToken></wsse:Security></soapenv:Header>"+
+				"   <soapenv:Body>"+
+				"      <tem:ConsultaClienteFornecedor>"+
+				"         <tem:CodColigada>1</tem:CodColigada>"+
+				"         <tem:Filter>CGCCFO = '030.860.434-23'</tem:Filter>"+
+				"         <tem:ResultFields>CODCFO;NOME;CGCCFO;PAGREC</tem:ResultFields>"+
+				"         <tem:Schema>false</tem:Schema>"+
+				"      </tem:ConsultaClienteFornecedor>"+
+				"   </soapenv:Body>"+
+				"</soapenv:Envelope>";
+
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4) {
+					
+					parser = new DOMParser();
+					xmlDoc = parser.parseFromString(xmlhttp.response,"text/xml");
+					resultado = xmlDoc.getElementsByTagName("ConsultaClienteFornecedorResult")[0].childNodes[0].nodeValue;
+					
+					resultforn = parser.parseFromString(resultado,"text/xml");
+					document.write("NOME: "+resultforn.getElementsByTagName("NOME")[0].childNodes[0].nodeValue+"<BR>");
+					document.write("CODCFO: "+resultforn.getElementsByTagName("CODCFO")[0].childNodes[0].nodeValue+"<BR>");
+					document.write("PAGREC: "+resultforn.getElementsByTagName("PAGREC")[0].childNodes[0].nodeValue+"<BR>");
+					document.write("CGCCFO: "+resultforn.getElementsByTagName("CGCCFO")[0].childNodes[0].nodeValue+"<BR>");
+                }
+            };
+
+            xmlhttp.send(strRequest);
+        };
+       
+        window.onload = function() {
+            soap();
+        };
+    </script>
+</body>
+</html>

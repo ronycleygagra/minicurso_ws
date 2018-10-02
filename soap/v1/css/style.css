@@ -1,0 +1,38 @@
+html, body{
+	margin:0;
+	padding:0;
+	overflow: auto;
+}
+
+.form-search {
+
+	background-color: white;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	padding: 10px;
+	margin: 20px 0 20px 0;
+}
+
+.form-search a {
+	color:steelblue;
+	font-family: Helvetica,Arial,sans-serif;
+}
+
+.form-search a:hover {
+	text-decoration: none;
+	color: darkgrey;
+}
+
+.form-search h4 {
+	color: gray;
+	font-family: Helvetica,Arial,sans-serif;
+}
+
+.list-inscritos {
+	background-color:#F2F2F2; 
+	border-bottom: 1px solid #ccc;
+	padding: 10px;
+}
+.checkin {
+	text-align: center;
+}
