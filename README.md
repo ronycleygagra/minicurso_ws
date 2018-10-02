@@ -1,2 +1,6 @@
-# minucurso
-Arquivos do minicurso sobre webservices
+## IFPB - CAMPUS CAMPINA GRANDE
+## IEEE DAY 2018
+## MINI-CURSO: CONSUMINDO WEB SERVICES COM JAVASCRIPT E AJAX
+## 02/10/2018
+
+Encontram-se aqui os arquivos utilizados no mini-curso.
